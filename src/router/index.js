@@ -19,6 +19,12 @@ Vue.use(Router)
 // 2.创建路由
 const  routes = [
   {
+    // 路由的默认路径
+    path: '/',
+    // redirect 重定向
+    redirect: '/home'
+  },
+  {
     path: '/home',
     component: Home,
     meta:{
