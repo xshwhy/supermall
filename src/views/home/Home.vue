@@ -154,7 +154,7 @@
 
 <style scoped>
   #home {
-    padding-top: 44px;
+    padding-top:  44px;
   }
 
   .home-nav {
