@@ -1,6 +1,7 @@
 <template>
 <div id="home">
   <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
+  <scroll class="content" ref="scroll">
   <home-swiper :banners="banners"/>
   <recommend-view :recommends="recommends"/>
   <feature-view/>
@@ -9,57 +10,9 @@
                @tabClick="tabClick"
   />
   <goods-list :goods="showGoods" />
-
-  <ul>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-    <li>列表</li>
-  </ul>
+  </scroll>
+<!--  .native 监听组件根元素的原生事件-->
+  <back-top @click.native="backClick"/>
 </div>
 </template>
 
@@ -72,6 +25,8 @@
   import NavBar from "components/common/navbar/NavBar"
   import TabControl from "components/content/tabControl/TabControl"
   import GoodsList from "components/content/goods/GoodsList";
+  import Scroll from "components/common/scroll/Scroll";
+  import BackTop from "components/content/backTop/BackTop";
 
   import {getHomeMultidata,getHomeGoods} from "network/home";
 
@@ -102,6 +57,8 @@
             NavBar,
             TabControl,
             GoodsList,
+            Scroll,
+            BackTop,
         },
         created() {
           // 1.请求多个数据
@@ -147,7 +104,10 @@
                   this.goods[type].page += 1
               })
           },
-
+          backClick() {
+              console.log("backClick");
+              this.$refs.scroll.scrollTo(0, 0)
+          }
       }
     }
 </script>
@@ -155,22 +115,38 @@
 <style scoped>
   #home {
     padding-top:  44px;
+    height: 100vh;
+    /*相对定位*/
+    position: relative;
   }
 
   .home-nav {
-    background-color: var(--color-tint);
-    color: #fff;
+     background-color: var(--color-tint);
+     color: #fff;
 
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 9;
-  }
+     position: fixed;
+     left: 0;
+     right: 0;
+     top: 0;
+     z-index: 9;
+
+   }
 
   .tab-control {
     position: sticky;
     top: 44px;
     z-index: 9;
+  }
+
+  .content {
+    background-color: white;
+    /*height: 300px;*/
+    overflow: hidden;
+    /*绝对定位*/
+    position: absolute;
+    top: 44px;
+    bottom: 49px;
+    left: 0;
+    right: 0;
   }
 </style>

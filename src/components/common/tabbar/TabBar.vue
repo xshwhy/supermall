@@ -27,6 +27,8 @@
     /* 利用flex进行布局 */
     display: flex;
     text-align: center;
+
+    z-index: 10;
   }
 </style>
 

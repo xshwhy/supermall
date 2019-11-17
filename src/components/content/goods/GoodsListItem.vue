@@ -32,7 +32,7 @@
 
   .goods-item img {
     width: 100%;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
   }
 
   .goods-info {
@@ -65,7 +65,7 @@
     content: '';
     position: absolute;
     left: -15px;
-    top: -1px;
+    top: 0px;
     width: 14px;
     height: 14px;
     background: url("~assets/img/common/collect.svg") 0 0/14px 14px;
